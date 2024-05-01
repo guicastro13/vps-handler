@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 	"net/http"
-    "commands"
-    "middlewares"
-    "types"
-    "handlers"
+    "github.com/guicastro13/vps-handler/commands"
+    "github.com/guicastro13/vps-handler/middlewares"
+    "github.com/guicastro13/vps-handler/types"
+    "github.com/guicastro13/vps-handler/handlers"
 )
 
 func main() {

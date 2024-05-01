@@ -2,8 +2,9 @@ package handlers
 
 import (
     "errors"
-    "golang.org/x/crypto/ssh"
+    "github.com/guicastro13/vps-handler/types"
 )
+
 
 func ExecuteSSHCommand(command string, session *SSHSession) (string, error) {
     if session == nil || session.conn == nil {

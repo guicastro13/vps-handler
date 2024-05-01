@@ -1,4 +1,4 @@
-module vps-event
+module github.com/guicastro13/vps-handler
 
 go 1.22.2
 

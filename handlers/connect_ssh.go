@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"golang.org/x/crypto/ssh"
+	"github.com/guicastro13/vps-handler/types"
 )
 
 func (c *SSHClient) Connect() error {

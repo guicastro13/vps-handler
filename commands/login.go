@@ -1,9 +1,10 @@
-package main
+package commands
 
 import (
 	"encoding/json"
 	"net/http"
 	"log"
+	"github.com/guicastro13/vps-handler/types"
 )
 
 
