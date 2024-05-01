@@ -8,5 +8,4 @@ type SSHSession struct {
     conn *ssh.Client
 }
 
-var sshSession *SSHSession
-
+var SSHTotalSession *SSHSession

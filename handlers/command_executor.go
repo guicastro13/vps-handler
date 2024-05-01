@@ -6,18 +6,18 @@ import (
 )
 
 
-func ExecuteSSHCommand(command string, session *SSHSession) (string, error) {
+func ExecuteSSHCommand(command string, session *types.SSHSession) (string, error) {
     if session == nil || session.conn == nil {
         return "", errors.New("SSH session not established")
     }
 
-    sshSession, err := session.conn.NewSession() // Renomeado para sshSession para evitar conflito de nomes
+    SSHTotalSession, err := session.conn.NewSession() // Renomeado para SSHTotalSession para evitar conflito de nomes
     if err != nil {
         return "", err
     }
-    defer sshSession.Close()
+    defer SSHTotalSession.Close()
 
-    output, err := sshSession.CombinedOutput(command)
+    output, err := SSHTotalSession.CombinedOutput(command)
     if err != nil {
         return "", err
     }

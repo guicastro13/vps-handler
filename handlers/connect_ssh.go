@@ -5,7 +5,7 @@ import (
 	"github.com/guicastro13/vps-handler/types"
 )
 
-func (c *SSHClient) Connect() error {
+func (c *types.SSHClient) Connect() error {
 	clientConfig := &ssh.ClientConfig{
 		User: c.Host,
 		Auth: []ssh.AuthMethod{

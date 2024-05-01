@@ -5,8 +5,8 @@ import (
 	"net/http"
     "github.com/guicastro13/vps-handler/commands"
     "github.com/guicastro13/vps-handler/middlewares"
-    "github.com/guicastro13/vps-handler/types"
     "github.com/guicastro13/vps-handler/handlers"
+	"github.com/guicastro13/vps-handler/types"
 )
 
 func main() {

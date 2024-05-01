@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"net/http"
 	"log"
-	"github.com/guicastro13/vps-handler/types"
 )
 
 
@@ -38,7 +37,7 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("true"))
 
-	sshSession = &SSHSession{
+	SSHTotalSession = &SSHSession{
 		conn: client.conn,
 	}
 }
