@@ -64,6 +64,21 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	activeConnections[client.ID] = client
 }
 
+func CancelConnection(w http.ResponseWriter, r *http.Request) {
+	id := r.URL.Query().Get("id")
+	client, ok := activeConnections[id]
+	if !ok {
+		http.Error(w, "Conexão não encontrada", http.StatusNotFound)
+		return
+	}
+
+	if client.conn != nil {
+		client.conn.Close()
+	}
+
+	delete(activeConnections, id)
+}
+
 func HandleMachineInfo(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Query().Get("id")
 	client, ok := activeConnections[id]
@@ -124,13 +139,6 @@ func (c *SSHClient) Start() error {
 	return nil
 }
 
-func (c *SSHClient) Close() error {
-	if c.conn != nil {
-		return c.conn.Close()
-	}
-	return nil
-}
-
 func HandleListConnections(w http.ResponseWriter, r *http.Request) {
 	var connectionIDs []string
 	for id := range activeConnections {
@@ -163,6 +171,7 @@ func CorsMiddleware(next http.Handler) http.Handler {
 }
 
 func main() {
+	http.Handle("/cancel-connection", CorsMiddleware(http.HandlerFunc(CancelConnection)))
 	http.Handle("/machine-info", CorsMiddleware(http.HandlerFunc(HandleMachineInfo)))
 	http.Handle("/login", CorsMiddleware(http.HandlerFunc(HandleLogin)))
 	http.Handle("/list-connections", CorsMiddleware(http.HandlerFunc(HandleListConnections)))
